@@ -1,10 +1,6 @@
 const input = require('readline-sync');
 
-// TODO 2: modify your quiz app to ask 5 questions //
-
-// TODO 1.1a: Define candidateName // 
 let candidateName = "";
-// TODO 1.2a: Define question, correctAnswer, and candidateAnswer //
 let question;
 let correctAnswer;
 let candidateAnswer;
@@ -14,71 +10,63 @@ let candidateAnswers;
 question = "Who was the first American woman in space? ";
 correctAnswer = "Sally Ride";
 candidateAnswer = "";
-
+candidateAnswers = [];
 questions = ["Who was the first American woman in space?", "True or false: 5 kilometer == 5000 meters?",	"(5 + 3)/2 * 10 = ?", "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2?", "What is the minimum crew size for the ISS?"]
-correctAnswers = ["Sally Ride", "true", "40", "Trajetory", "3"]
+correctAnswers = ["Sally Ride", "True", 40, "Trajectory", 3]
+
+
 
 
 function askForName() {
   // TODO 1.1b: Ask for candidate's name //
   candidateName = input.question("What is your name? ");
   console.log("Hello,", candidateName, "and welcome to the candidate surveyor!");
+  return candidateName
 }
 
 function askQuestion() {
-  // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-
-candidateAnswers = [];
-
-for (let i = 0; i < questions.length; i = i + 1) {
-  candidateAnswers[i] = input.question(`${questions[i]}`)
-}
-console.log(candidateAnswers)
-// 0kay so this part works now!
-
+  // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer
+for (let x = 0; x < questions.length; x++) {
+  candidateAnswers[x] = input.question(`${questions[x]}`);
+  }
+  for (let y = 0; y < candidateAnswers.length; y = y + 1) {
+  console.log(`You answered: ${candidateAnswers[y]}. The Correct answer is: ${correctAnswers[y]}`);
+  }
 }
 
+let numCorrect = 0
+let numIncorrect = 0
 
-function gradeQuiz(candidateAnswers) {
-
-// TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-
-
-/* This was the original 1.2c from part 1
-
-if (candidateAnswer === correctAnswer) {
-  console.log("Correct!");
- }  else {
-      console.log("Incorrect!");
- }
-  
-  let grade;
-  
-
-  return grade;
+function gradeQuiz() {
+// TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly
+for (let z = 0; z < candidateAnswers.length; z++) {
+  if (candidateAnswers[z] == correctAnswers[z]) {
+    numCorrect = numCorrect + 1;
+  }
+  else {
+    numIncorrect = numIncorrect + 1;
+  }
 }
-
-*/
+console.log(`You scored ${numCorrect} out of ${questions.length}.`);
+if (numCorrect / questions.length >= .8) {
+  console.log(`Final score: ${numCorrect} out of  ${questions.length}! You passed!`)
+}
+else {
+    console.log(`Final score: ${numCorrect} out of  ${questions.length} percent. You failed!`)
+}
+}
 
 function runProgram() {
   askForName();
-  // TODO 1.1c: Ask for candidate's name //
-  
   askQuestion();
-  gradeQuiz(this.candidateAnswers);
+  gradeQuiz();
 }
 
 // Replace the basic feedback from TODO 1.2c with a template literal that displays each of the candidate's responses in addition to the corresponding correct answers.
 
-for (let i = 0; i < candidateAnswers.length; i = i + 1) {
-  console.log(`You answered, ${candidateAnswers[i]}. The Correct answer is ${correctAnswers}`)
-  }
 
-
-
-
-// Don't write any code below this line //
-// And don't change these or your program will not run as expected //
+// Don't write any code below this line
+// And don't change these or your program will not run as expected
 module.exports = {
   candidateName: candidateName,
   question: question,
@@ -88,5 +76,5 @@ module.exports = {
   correctAnswers: correctAnswers,
   candidateAnswers: candidateAnswers,
   gradeQuiz: gradeQuiz,
-  runProgram: runProgram
+  runProgram: runProgram,
 };
