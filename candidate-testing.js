@@ -18,14 +18,12 @@ correctAnswers = ["sally ride", "true", 40, "trajectory", 3]
 
 
 function askForName() {
-  // TODO 1.1b: Ask for candidate's name //
   candidateName = input.question("What is your name? ");
   console.log("Hello,", candidateName, "and welcome to the candidate surveyor!");
   return candidateName
 }
 
 function askQuestion() {
-  // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer
 for (let x = 0; x < questions.length; x++) {
   candidateAnswers[x] = input.question(`${questions[x]}`);
   }
@@ -39,7 +37,6 @@ let numCorrect = 0
 let numIncorrect = 0
 
 function gradeQuiz() {
-// TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly
 for (let z = 0; z < candidateAnswers.length; z++) {
   if (candidateAnswers[z].toLowerCase() == correctAnswers[z]) {
     numCorrect = numCorrect + 1;
@@ -64,11 +61,6 @@ function runProgram() {
   gradeQuiz();
 }
 
-// Replace the basic feedback from TODO 1.2c with a template literal that displays each of the candidate's responses in addition to the corresponding correct answers.
-
-
-// Don't write any code below this line
-// And don't change these or your program will not run as expected
 module.exports = {
   candidateName: candidateName,
   question: question,
