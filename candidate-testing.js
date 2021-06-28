@@ -32,6 +32,7 @@ for (let x = 0; x < questions.length; x++) {
   for (let y = 0; y < candidateAnswers.length; y = y + 1) {
   console.log(`You answered: ${candidateAnswers[y]}. The Correct answer is: ${correctAnswers[y]}`);
   }
+  return candidateAnswers
 }
 
 let numCorrect = 0
@@ -54,6 +55,7 @@ if (numCorrect / questions.length >= .8) {
 else {
     console.log(`Final score: ${numCorrect} out of  ${questions.length} percent. You failed!`)
 }
+return numCorrect
 }
 
 function runProgram() {
