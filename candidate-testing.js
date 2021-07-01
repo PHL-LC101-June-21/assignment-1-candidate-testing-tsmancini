@@ -33,8 +33,8 @@ for (let x = 0; x < questions.length; x++) {
   return candidateAnswers
 }
 
-let numCorrect = 0
-let numIncorrect = 0
+let numCorrect = 0;
+let numIncorrect = 0;
 
 function gradeQuiz() {
 for (let z = 0; z < candidateAnswers.length; z++) {
@@ -47,13 +47,15 @@ for (let z = 0; z < candidateAnswers.length; z++) {
 }
 console.log(`You scored ${numCorrect} out of ${questions.length}.`);
 if (numCorrect / questions.length >= .8) {
-  console.log(`Final score: ${numCorrect} out of  ${questions.length}! You passed!`)
+  console.log(`Final score: ${(numCorrect / questions.length) * 100} percent. You passed!`)
 }
 else {
-    console.log(`Final score: ${numCorrect} out of  ${questions.length} percent. You failed!`)
+    console.log(`Final score: ${(numCorrect / questions.length) * 100} percent. You failed!`)
 }
 return numCorrect
 }
+
+percentage = (numCorrect * 100)
 
 function runProgram() {
   askForName();
