@@ -1,50 +1,68 @@
 const input = require('readline-sync');
 
-// TODO 2: modify your quiz app to ask 5 questions //
-
-// TODO 1.1a: Define candidateName // 
-let candidateName;
-// TODO 1.2a: Define question, correctAnswer, and candidateAnswer //
+let candidateName = "";
 let question;
 let correctAnswer;
 let candidateAnswer;
 let questions;
 let correctAnswers;
 let candidateAnswers;
+question = "Who was the first American woman in space? ";
+correctAnswer = "Sally Ride";
+candidateAnswer = "";
+candidateAnswers = [];
+questions = ["Who was the first American woman in space?", "True or false: 5 kilometer == 5000 meters?",	"(5 + 3)/2 * 10 = ?", "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2?", "What is the minimum crew size for the ISS?"]
+correctAnswers = ["sally ride", "true", 40, "trajectory", 3]
+
+
 
 
 function askForName() {
-  // TODO 1.1b: Ask for candidate's name //
-
+  candidateName = input.question("What is your name? ");
+  console.log("Hello,", candidateName, "and welcome to the candidate surveyor!");
+  return candidateName
 }
 
 function askQuestion() {
-  // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-
-
+for (let x = 0; x < questions.length; x++) {
+  candidateAnswers[x] = input.question(`${questions[x]}`);
+  }
+  for (let y = 0; y < candidateAnswers.length; y = y + 1) {
+  console.log(`You answered: ${candidateAnswers[y]}. The Correct answer is: ${correctAnswers[y]}`);
+  }
+  return candidateAnswers
 }
 
-function gradeQuiz(candidateAnswers) {
+let numCorrect = 0;
+let numIncorrect = 0;
 
-  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-
-
-  let grade;
-  
-
-  return grade;
+function gradeQuiz() {
+for (let z = 0; z < candidateAnswers.length; z++) {
+  if (candidateAnswers[z].toLowerCase() == correctAnswers[z]) {
+    numCorrect = numCorrect + 1;
+  }
+  else {
+    numIncorrect = numIncorrect + 1;
+  }
 }
+console.log(`You scored ${numCorrect} out of ${questions.length}.`);
+if (numCorrect / questions.length >= .8) {
+  console.log(`Final score: ${(numCorrect / questions.length) * 100} percent. You passed!`)
+}
+else {
+    console.log(`Final score: ${(numCorrect / questions.length) * 100} percent. You failed!`)
+}
+return numCorrect
+}
+
+percentage = (numCorrect * 100)
 
 function runProgram() {
   askForName();
-  // TODO 1.1c: Ask for candidate's name //
-  
   askQuestion();
-  gradeQuiz(this.candidateAnswers);
+  gradeQuiz();
 }
 
-// Don't write any code below this line //
-// And don't change these or your program will not run as expected //
 module.exports = {
   candidateName: candidateName,
   question: question,
@@ -54,5 +72,5 @@ module.exports = {
   correctAnswers: correctAnswers,
   candidateAnswers: candidateAnswers,
   gradeQuiz: gradeQuiz,
-  runProgram: runProgram
+  runProgram: runProgram,
 };
